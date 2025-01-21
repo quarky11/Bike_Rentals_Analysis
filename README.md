@@ -3,7 +3,7 @@
 ## Overview
 This project analyzes bike rental usage data across different times of the day and days of the week. The primary objective is to uncover patterns, trends, and insights that can inform better operational decisions for bike rental businesses.
 
-The dataset used in this project includes hourly and daily data on bike rentals, with various features such as weather conditions, time-related factors, and user categories.
+The dataset used in this project includes hourly and daily data on bike rentals, with various features such as weather conditions, time-related factors, season, and user categories.
 
 ---
 
