@@ -12,7 +12,7 @@ df_Peekhours = pd.read_csv("Dashboard/Rental_by_peekhours.csv")
 
 st.set_page_config(layout="wide")
 st.markdown('<style>div.block-container{padding-top:1rem;}<\style>', unsafe_allow_html=True)
-image = Image.open("C:/Users/GF63 THIN/Downloads/Dicoding/Tubes/images.png")
+image = Image.open("Dashboard/images.png")
 
 col1, col2 = st.columns([0.1,0.9])
 with col1 :
