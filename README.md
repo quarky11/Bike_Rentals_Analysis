@@ -41,9 +41,8 @@ The analysis is based on two datasets:
 ## Methods and Tools
 - **Programming Language**: Python
 - **Libraries**:
-  - Data Analysis: `pandas`, `numpy`
-  - Visualization: `matplotlib`, `seaborn`
-  - Machine Learning (if applicable): `scikit-learn`
+  - Data Analysis: `pandas`
+  - Visualization: `matplotlib`, `seaborn`,`plotly`,`streamlit`
 
 ---
 
