@@ -5,10 +5,10 @@ import datetime
 import plotly.express as px
 import plotly.graph_objects as go
 
-df_Season = pd.read_csv("C:/Users/GF63 THIN/Downloads/Dicoding/Tubes/Rental_by_Season.csv")
-df_Weather = pd.read_csv("C:/Users/GF63 THIN/Downloads/Dicoding/Tubes/Rental_by_Weather.csv")
-df_Daydesc = pd.read_csv("C:/Users/GF63 THIN/Downloads/Dicoding/Tubes/Rental_by_Hourdesc.csv")
-df_Peekhours = pd.read_csv("C:/Users/GF63 THIN/Downloads/Dicoding/Tubes/Rental_by_peekhours.csv")
+df_Season = pd.read_csv("Dashboard/Rental_by_Season.csv")
+df_Weather = pd.read_csv("Dashboard/Rental_by_Weather.csv")
+df_Daydesc = pd.read_csv("Dashboard/Rental_by_Hourdesc.csv")
+df_Peekhours = pd.read_csv("Dashboard/Rental_by_peekhours.csv")
 
 st.set_page_config(layout="wide")
 st.markdown('<style>div.block-container{padding-top:1rem;}<\style>', unsafe_allow_html=True)
