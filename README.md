@@ -7,6 +7,47 @@ The dataset used in this project includes hourly and daily data on bike rentals,
 
 ---
 
+## Steps to Set Up a Virtual Environment
+1. Open Command Prompt
+Open CMD by typing cmd in the search bar or pressing Win + R, then typing cmd, and hitting Enter.
+
+2. Navigate to Your Project Directory
+Use the cd command to navigate to your project directory:
+
+cmd
+cd path\to\your\project
+
+3. Create a Virtual Environment
+Run the following command to create a virtual environment:
+
+cmd
+python -m venv nameenv  #Replace env with your desired name for the virtual environment folder.
+
+4. Activate the Virtual Environment
+Activate the virtual environment with the following command:
+
+cmd
+env\Scripts\activate
+
+Once activated, the CMD prompt will show the virtual environment's name in parentheses, e.g., (env).
+
+---
+
+## Steps to install packages via requirement.txt
+
+1. ensure already activated the enviroment
+2. Run the following command to install all packages listed in the requirements.txt file:
+
+cmd
+pip install -r requirements.txt
+
+3. After installation, ensure the packages were installed correctly by listing the installed packages:
+
+cmd
+pip list
+
+---
+
 ## Dataset
 The analysis is based on two datasets:
 1. **Hourly Data**: Contains bike rental data recorded on an hourly basis.
