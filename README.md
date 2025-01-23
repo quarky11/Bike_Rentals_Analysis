@@ -6,9 +6,9 @@ This project analyzes bike rental usage data across different times of the day a
 The dataset used in this project includes hourly and daily data on bike rentals, with various features such as weather conditions, time-related factors, season, and user categories.
 
 ---
-### Steps to Run DASHBOARD
+## Step to Run Dashboard
 
-## 1 . Steps to Set Up a Virtual Environment
+### 1 . Steps to Set Up a Virtual Environment
 1. Open Command Prompt
    Open CMD by typing cmd in the search bar or pressing Win + R, then typing cmd, and hitting Enter.
 
@@ -34,7 +34,7 @@ The dataset used in this project includes hourly and daily data on bike rentals,
 
 ---
 
-## 2 . Steps to install packages via requirement.txt
+### 2 . Steps to install packages via requirement.txt
 
 1. ensure already activated the enviroment
 2. Run the following command to install all packages listed in the requirements.txt file:
@@ -49,15 +49,15 @@ The dataset used in this project includes hourly and daily data on bike rentals,
 
 ---
 
-## 3 . Run Streamlit App
+### 3 . Run Streamlit App
 
-1. Just go to the terminal and write this ' streamlit run dashboard.py ' 
+1. Just go to the terminal and write this ' streamlit run app.py '. The 'app.py' is your python file name that contains your dashboard. 
 
 ---
 
 ## Analysis Process
 
-## Dataset
+### Dataset
 The analysis is based on two datasets:
 1. **Hourly Data**: Contains bike rental data recorded on an hourly basis.
 2. **Daily Data**: Aggregates bike rental data for each day.
@@ -78,7 +78,7 @@ The analysis is based on two datasets:
 
 ---
 
-## Analysis Goals
+### Analysis Goals
 1. **Identify Rental Patterns**:
    - Knowing rental pattern each hours to gain peek hours rental
 
@@ -88,7 +88,7 @@ The analysis is based on two datasets:
 
 ---
 
-## Methods and Tools
+### Methods and Tools
 - **Programming Language**: Python
 - **Libraries**:
   - Data Analysis: `pandas`
