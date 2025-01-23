@@ -6,8 +6,8 @@ This project analyzes bike rental usage data across different times of the day a
 The dataset used in this project includes hourly and daily data on bike rentals, with various features such as weather conditions, time-related factors, season, and user categories.
 
 ---
-
-## Steps to Set Up a Virtual Environment
+## Steps to Run DASHBOARD
+## 1 . Steps to Set Up a Virtual Environment
 1. Open Command Prompt
    Open CMD by typing cmd in the search bar or pressing Win + R, then typing cmd, and hitting Enter.
 
@@ -33,7 +33,7 @@ The dataset used in this project includes hourly and daily data on bike rentals,
 
 ---
 
-## Steps to install packages via requirement.txt
+## 2 . Steps to install packages via requirement.txt
 
 1. ensure already activated the enviroment
 2. Run the following command to install all packages listed in the requirements.txt file:
@@ -47,6 +47,14 @@ The dataset used in this project includes hourly and daily data on bike rentals,
    pip list
 
 ---
+
+## 3 . Run Streamlit App
+
+1. Just go to the terminal and write this ' streamlit run dashboard.py ' 
+
+---
+
+## Analysis Process
 
 ## Dataset
 The analysis is based on two datasets:
