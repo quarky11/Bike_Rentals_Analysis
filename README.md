@@ -49,9 +49,11 @@ The dataset used in this project includes hourly and daily data on bike rentals,
 
 ---
 
-### 3 . Run Streamlit App
+### 3 . Run Streamlit App on VS CODE
 
-1. Just go to the terminal and write this ' streamlit run app.py '. The 'app.py' is your python file name that contains your dashboard. 
+1. If you are using VS Code (my case) dont forget to click open folder and choose Dashboard folder.
+2. After that dont forget to Ctrl + Shift + P and select the desired interpreter from the list. This step will connect your library from command prompt to VS Code.
+3. After all connect go to terminal and write ' streamlit run app.py '. The 'app.py' is your python file name and in this case that's the name.
 
 ---
 
