@@ -6,7 +6,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 
 #import data
-df_hour = pd.read_csv("C:/Users/GF63 THIN/Downloads/Dicoding/Tubes/hour.csv")
+df_hour = pd.read_csv("Dashboard/hour.csv")
 
 #cleaning outlier
 Q1 = (df_hour['cnt']).quantile(0.25)
@@ -78,7 +78,7 @@ print(df_rentals_bytimedesc)
 
 st.set_page_config(layout="wide")
 st.markdown('<style>div.block-container{padding-top:1rem;}<\style>', unsafe_allow_html=True)
-image = Image.open("C:/Users/GF63 THIN/Downloads/Dicoding/Tubes/images.png")
+image = Image.open("Dashboard/images.png")
 
 col1, col2 = st.columns([0.1,0.9])
 with col1 :
