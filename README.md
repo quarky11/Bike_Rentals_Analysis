@@ -6,7 +6,8 @@ This project analyzes bike rental usage data across different times of the day a
 The dataset used in this project includes hourly and daily data on bike rentals, with various features such as weather conditions, time-related factors, season, and user categories.
 
 ---
-## Steps to Run DASHBOARD
+### Steps to Run DASHBOARD
+
 ## 1 . Steps to Set Up a Virtual Environment
 1. Open Command Prompt
    Open CMD by typing cmd in the search bar or pressing Win + R, then typing cmd, and hitting Enter.
