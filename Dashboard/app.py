@@ -6,7 +6,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 
 #import data
-df_hour = pd.read_csv("Dashboard/hour.csv")
+df_hour = pd.read_csv("C:/Users/GF63 THIN/Downloads/Dicoding/Tubes/hour.csv")
 
 #cleaning outlier
 Q1 = (df_hour['cnt']).quantile(0.25)
@@ -21,7 +21,7 @@ kondisi_more_than = df_hour['cnt'] > maximum
 df_hour.drop(df_hour[kondisi_lower_than].index, inplace=True)
 df_hour.drop(df_hour[kondisi_more_than].index, inplace=True)
 
-#cleaning data
+#cleaning data1
 weather_mapping = {
     1: "Clear, Few clouds",
     2: "Mist + Cloudy, Mist",
@@ -45,6 +45,12 @@ Holiday_mapping = {
 
 df_hour['day_desc'] = df_hour['holiday'].map(Holiday_mapping)
 
+#Cleaning data2 (Binning Technique)
+
+cutoff = [-1,3,9,15,20,23]
+labels = ["Dini Hari","Pagi Hari","Siang Hari","Sore Hari","Malam Hari"]
+df_hour ['Time_Desc'] = pd.cut(df_hour["hr"],bins=cutoff,labels=labels)
+
 #EDA
 
 df_rentals_byseason = df_hour.groupby(by="season_desc", as_index=False
@@ -61,25 +67,18 @@ df_rentals_byweather= df_hour.groupby(by="weather_desc", as_index=False
     rentals_per_hours =("cnt", "mean")      # Rata-rata rental sepeda
 ).sort_values(by="total_rentals", ascending=False)
 
-df_rentals_byhourdesc= df_hour.groupby(by="day_desc", as_index=False
+df_rentals_bytimedesc= df_hour.groupby(by="Time_Desc", as_index=False
 ).agg(
     sum_hour=("instant", "nunique"),   # Jumlah hari unik
     total_rentals=("cnt", "sum"),     # Total rental sepeda
     rentals_per_hours =("cnt", "mean")      # Rata-rata rental sepeda
-).sort_values(by="total_rentals", ascending=False)
+)
 
-df_fall = df_hour[df_hour["season"] == 3]
-df_peek_hours = df_fall.groupby(by="hr", as_index=False
-).agg(
-      peek_hours_rental = ("cnt","mean")
-).sort_values(by="hr",ascending = True)
-
-
-df_peek_hours["peek_hours_rental"] = df_peek_hours["peek_hours_rental"].round()
+print(df_rentals_bytimedesc)
 
 st.set_page_config(layout="wide")
 st.markdown('<style>div.block-container{padding-top:1rem;}<\style>', unsafe_allow_html=True)
-image = Image.open("Dashboard/images.png")
+image = Image.open("C:/Users/GF63 THIN/Downloads/Dicoding/Tubes/images.png")
 
 col1, col2 = st.columns([0.1,0.9])
 with col1 :
@@ -112,14 +111,10 @@ with col5:
     fig2 = px.bar(df_rentals_byweather,x ='total_rentals',y='weather_desc',title= 'Total Bike Rentals by Weather',template='gridon',height=500,hover_data=['total_rentals'],labels={"total_rentals":"Total Rentals","weather_desc":"Weather"} )
     st.plotly_chart(fig2,use_container_width=True)
     
-col6, col7,col8 = st.columns([0.1,0.3,0.6])
+col6, col7 = st.columns([0.1,0.9])
 
 #with col6:
     
 with col7:
-    fig3 = px.pie(df_rentals_byhourdesc, names ='day_desc',values='rentals_per_hours',title= 'Total Bike Rentals by Day')
+    fig3 = px.bar(df_rentals_bytimedesc, x ='Time_Desc',y='rentals_per_hours',title= 'Total Bike Rentals by Group Time',template='gridon',height=500,hover_data=['rentals_per_hours'],labels={"rentals_per_hours":"Rental/Hours","Time_Desc":"Group Time"} )
     st.plotly_chart(fig3,use_container_width=True)
-    
-with col8:
-    fig4 = px.line(df_peek_hours, x ='hr',y='peek_hours_rental', title= "Peek Hours Rental on Fall Season",labels={"hr":"Hours Time","peek_hours_rental":"Rental per Hours"})
-    st.plotly_chart(fig4,use_container_width=True)
