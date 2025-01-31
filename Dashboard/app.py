@@ -115,7 +115,7 @@ df3 = dft(main_df)
 st.header('Bike Rental Behaviour Dashboard :sparkles:')
 
     
-col3, col4,col5 = st.columns([0.5,0.3,0.2])
+col3, col4,col5 = st.columns(3)
 
 with col3:
     box_date = str(datetime.datetime.now().strftime("%d %B %Y"))
@@ -130,7 +130,7 @@ with col5:
     fig2 = px.bar(df2,x ='total_rentals',y='weather_desc',title= 'Total Bike Rentals by Weather',template='gridon',height=500,hover_data=['total_rentals'],labels={"total_rentals":"Total Rentals","weather_desc":"Weather"} )
     st.plotly_chart(fig2,use_container_width=True)
     
-col6, col7 = st.columns([0.1,0.9])
+col6, col7 = st.columns(2)
 
 #with col6:
     
