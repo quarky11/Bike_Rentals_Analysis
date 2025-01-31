@@ -113,24 +113,7 @@ df2 = dfw(main_df)
 df3 = dft(main_df)
 
 st.header('Bike Rental Behaviour Dashboard :sparkles:')
-st.markdown('<style>div.block-container{padding-top:1rem;}<\style>', unsafe_allow_html=True)
-image = Image.open("Dashboard/images.png")
 
-col1, col2 = st.columns([0.5,0.5])
-with col1 :
-    st.image(image, width=200)
-    
-html_title = """
-    <style>
-    .title-test {
-    font-weight:bold;
-    padding:5px;
-    border-radius:6px;
-    }
-    </style>
-    <center><h1 class="title-test">Bike Rental Behaviour Dashboard</h1></center>"""
-with col2:
-    st.markdown(html_title, unsafe_allow_html=True)
     
 col3, col4,col5 = st.columns([0.5,0.3,0.2])
 
