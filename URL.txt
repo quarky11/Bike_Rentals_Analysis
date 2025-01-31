@@ -1,1 +1,1 @@
-https://bikerentalanalysis11.streamlit.app/
+https://submission2.streamlit.app/
