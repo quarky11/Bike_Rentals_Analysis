@@ -126,7 +126,6 @@ with col5:
     fig2 = px.bar(df2,x ='total_rentals',y='weather_desc',title= 'Total Bike Rentals by Weather',template='gridon',height=500,hover_data=['total_rentals'],labels={"total_rentals":"Total Rentals","weather_desc":"Weather"} )
     st.plotly_chart(fig2,use_container_width=True)
     
-col7 = st.columns(1)
-with col7:
+with st.container():
     fig3 = px.bar(df3, x ='Time_Desc',y='rentals_per_hours',title= 'Total Bike Rentals by Group Time',template='gridon',height=500,hover_data=['rentals_per_hours'],labels={"rentals_per_hours":"Rental/Hours","Time_Desc":"Group Time"} )
     st.plotly_chart(fig3,use_container_width=True)
