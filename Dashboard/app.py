@@ -112,7 +112,7 @@ df1 = dfr(main_df)
 df2 = dfw(main_df)
 df3 = dft(main_df)
 
-st.set_page_config(layout="wide")
+st.header('Bike Rental Behaviour Dashboard :sparkles:')
 st.markdown('<style>div.block-container{padding-top:1rem;}<\style>', unsafe_allow_html=True)
 image = Image.open("images.png")
 
