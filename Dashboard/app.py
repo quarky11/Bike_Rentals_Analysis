@@ -114,7 +114,7 @@ df3 = dft(main_df)
 
 st.header('Bike Rental Behaviour Dashboard :sparkles:')
 st.markdown('<style>div.block-container{padding-top:1rem;}<\style>', unsafe_allow_html=True)
-image = Image.open("images.png")
+image = Image.open("Dashboard/images.png")
 
 col1, col2 = st.columns([0.5,0.5])
 with col1 :
