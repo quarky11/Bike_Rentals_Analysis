@@ -51,36 +51,72 @@ cutoff = [-1,3,9,15,20,23]
 labels = ["Dini Hari","Pagi Hari","Siang Hari","Sore Hari","Malam Hari"]
 df_hour ['Time_Desc'] = pd.cut(df_hour["hr"],bins=cutoff,labels=labels)
 
+#Memastikan tipe data pada datetime adalah datetime
+
+datetime_columns = ["dteday"]
+df_hour.sort_values(by="dteday", inplace=True)
+df_hour.reset_index(inplace=True)
+ 
+for column in datetime_columns:
+    df_hour[column] = pd.to_datetime(df_hour[column])
+
 #EDA
 
-df_rentals_byseason = df_hour.groupby(by="season_desc", as_index=False
-).agg(
-    sum_hour=("instant", "nunique"),   # Jumlah hari unik
-    total_rentals=("cnt", "sum"),     # Total rental sepeda
-    rentals_per_hours =("cnt", "mean")      # Rata-rata rental sepeda
-).sort_values(by="total_rentals", ascending=False)
+min_date = df_hour["dteday"].min()
+max_date = df_hour["dteday"].max()
+ 
+with st.sidebar:
+    # Menambahkan logo perusahaan
+    st.image("https://github.com/dicodingacademy/assets/raw/main/logo.png")
+    
+    # Mengambil start_date & end_date dari date_input
+    start_date, end_date = st.date_input(
+        label='Rentang Waktu',min_value=min_date,
+        max_value=max_date,
+        value=[min_date, max_date]
+    )
+    
+main_df = df_hour[(df_hour["dteday"] >= str(start_date)) & 
+                (df_hour["dteday"] <= str(end_date))]
 
-df_rentals_byweather= df_hour.groupby(by="weather_desc", as_index=False
-).agg(
-    sum_hour=("instant", "nunique"),   # Jumlah hari unik
-    total_rentals=("cnt", "sum"),     # Total rental sepeda
-    rentals_per_hours =("cnt", "mean")      # Rata-rata rental sepeda
-).sort_values(by="total_rentals", ascending=False)
+def dfr(main_df):
+    df_rentals_byseason = main_df.groupby("season_desc", as_index=False).agg(
+        sum_hour=("instant", "nunique"),   # Jumlah hari unik dalam setiap musim
+        total_rentals=("cnt", "sum"),      # Total rental sepeda dalam setiap musim
+        rentals_per_hours=("cnt", "mean")  # Rata-rata rental sepeda per hari
+    ).sort_values(by="total_rentals", ascending=False)
+    
+    return df_rentals_byseason
 
-df_rentals_bytimedesc= df_hour.groupby(by="Time_Desc", as_index=False
-).agg(
-    sum_hour=("instant", "nunique"),   # Jumlah hari unik
-    total_rentals=("cnt", "sum"),     # Total rental sepeda
-    rentals_per_hours =("cnt", "mean")      # Rata-rata rental sepeda
-)
+def dfw(main_df) : 
+    df_rentals_byweather= main_df.groupby(by="weather_desc", as_index=False
+    ).agg(
+        sum_hour=("instant", "nunique"),   # Jumlah hari unik
+        total_rentals=("cnt", "sum"),     # Total rental sepeda
+        rentals_per_hours =("cnt", "mean")      # Rata-rata rental sepeda
+    ).sort_values(by="total_rentals", ascending=False)
+    
+    return df_rentals_byweather
 
-print(df_rentals_bytimedesc)
+def dft(main_df):
+    df_rentals_bytimedesc= main_df.groupby(by="Time_Desc", as_index=False
+    ).agg(
+        sum_hour=("instant", "nunique"),   # Jumlah hari unik
+        total_rentals=("cnt", "sum"),     # Total rental sepeda
+        rentals_per_hours =("cnt", "mean")      # Rata-rata rental sepeda
+    )
+    
+    return df_rentals_bytimedesc
+
+df1 = dfr(main_df)
+df2 = dfw(main_df)
+df3 = dft(main_df)
 
 st.set_page_config(layout="wide")
 st.markdown('<style>div.block-container{padding-top:1rem;}<\style>', unsafe_allow_html=True)
-image = Image.open("Dashboard/images.png")
+image = Image.open("images.png")
 
-col1, col2 = st.columns([0.1,0.9])
+col1, col2 = st.columns([0.5,0.5])
 with col1 :
     st.image(image, width=200)
     
@@ -96,19 +132,19 @@ html_title = """
 with col2:
     st.markdown(html_title, unsafe_allow_html=True)
     
-col3, col4,col5 = st.columns([0.1,0.45,0.45])
+col3, col4,col5 = st.columns([0.5,0.3,0.2])
 
 with col3:
     box_date = str(datetime.datetime.now().strftime("%d %B %Y"))
     st.write(f"Last Update : \n {box_date}")
 
 with col4:
-    fig1 = px.bar(df_rentals_byseason,x ='total_rentals',y='season_desc',title= 'Total Bike Rentals by Season',template='gridon',height=500,hover_data=['total_rentals'],labels={"total_rentals":"Total Rentals","season_desc":"Season"} )
+    fig1 = px.bar(df1,x ='total_rentals',y='season_desc',title= 'Total Bike Rentals by Season',template='gridon',height=500,hover_data=['total_rentals'],labels={"total_rentals":"Total Rentals","season_desc":"Season"} )
     st.plotly_chart(fig1,use_container_width=True)
     
  
 with col5:
-    fig2 = px.bar(df_rentals_byweather,x ='total_rentals',y='weather_desc',title= 'Total Bike Rentals by Weather',template='gridon',height=500,hover_data=['total_rentals'],labels={"total_rentals":"Total Rentals","weather_desc":"Weather"} )
+    fig2 = px.bar(df2,x ='total_rentals',y='weather_desc',title= 'Total Bike Rentals by Weather',template='gridon',height=500,hover_data=['total_rentals'],labels={"total_rentals":"Total Rentals","weather_desc":"Weather"} )
     st.plotly_chart(fig2,use_container_width=True)
     
 col6, col7 = st.columns([0.1,0.9])
@@ -116,5 +152,5 @@ col6, col7 = st.columns([0.1,0.9])
 #with col6:
     
 with col7:
-    fig3 = px.bar(df_rentals_bytimedesc, x ='Time_Desc',y='rentals_per_hours',title= 'Total Bike Rentals by Group Time',template='gridon',height=500,hover_data=['rentals_per_hours'],labels={"rentals_per_hours":"Rental/Hours","Time_Desc":"Group Time"} )
+    fig3 = px.bar(df3, x ='Time_Desc',y='rentals_per_hours',title= 'Total Bike Rentals by Group Time',template='gridon',height=500,hover_data=['rentals_per_hours'],labels={"rentals_per_hours":"Rental/Hours","Time_Desc":"Group Time"} )
     st.plotly_chart(fig3,use_container_width=True)
